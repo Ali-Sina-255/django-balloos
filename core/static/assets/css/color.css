@@ -1,0 +1,19 @@
+/* Color */
+.holiday-text-style i,.featured-area-two i,.footer-two-i a:hover,.content-location a:hover,
+.mobile-nav > ul li > a:hover {
+   
+    color: #672b83;
+
+}
+/* Background Color */
+.cart-popup .cart-btns a.checkout,
+header,.featured-area:before,.featured-area,.balloon-shap:hover,.hero-section-two::before,.review,.accordion-item .icon,
+.balloon-shap:hover:before,.call-us,.holiday:before,.footer-contact-info,.occians-holidays.three:after,.fun-facts-two:before,
+.occians-holidays.three:before,.occians-holidays.for:hover:after,.subscribe,.about-the-theodore,ul.specification li h6,
+.occians-holidays.for:hover:before,ul.instagram-posts figure:before,input[type='radio']:checked:after,.fun-facts-two,
+.coupon-area,.account button:hover,.single-comment a:hover,.error,.error:before,.parallax,.mobile-nav > ul > li.menu-item-has-children.active > ul.sub-menu li:before,
+.review:after,.review-slider .owl-nav i:hover,.please-note,.description.nav-pills .nav-link,.description.nav-pills .show>.nav-link{
+
+    background-color:#672b83;
+
+}
