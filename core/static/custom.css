@@ -13,3 +13,6 @@
     animation-duration:8s;
     z-index:99;
 }
+ul.errorlist {
+display: none;
+}
