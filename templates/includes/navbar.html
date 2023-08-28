@@ -1,9 +1,10 @@
 {% load static %}
 <span class="loader"></span>
-<header>
+
+<header class="two">
     <div class="container">
         <div class="top-bar">
-            <p>Free Shipping on $149 or more. $9.50 Flat Rate up to $149. <span>exclusions apply</span></p>
+            <p>Free Shipping on $149 or more. $9.50 Flat Rate up to $149.<span> exclusions apply</span></p>
             <div class="ordering">
                 <a href="#">Ordering</a>
                 <div class="line"></div>
@@ -14,8 +15,8 @@
         </div>
         <div class="center-ber">
             <div class="logo">
-                <a href="index.html">
-                    <img alt="logo" src="{% static 'assets/img/logo.png' %}">
+                <a href="{% url 'home' %}">
+                    <img alt="logo" src="{% static 'assets/img/logo-b.png' %}">
                 </a>
             </div>
             <form>
@@ -27,7 +28,7 @@
                     <a class="d-flex" href="{% url 'login' %}">Log In
                         <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.364 11.636C14.3837 10.6558 13.217 9.93013 11.9439 9.49085C13.3074 8.55179 14.2031 6.9802 14.2031 5.20312C14.2031 2.33413 11.869 0 9 0C6.131 0 3.79688 2.33413 3.79688 5.20312C3.79688 6.9802 4.69262 8.55179 6.05609 9.49085C4.78308 9.93013 3.61631 10.6558 2.63605 11.636C0.936176 13.3359 0 15.596 0 18H1.40625C1.40625 13.8128 4.81279 10.4062 9 10.4062C13.1872 10.4062 16.5938 13.8128 16.5938 18H18C18 15.596 17.0638 13.3359 15.364 11.636ZM9 9C6.90641 9 5.20312 7.29675 5.20312 5.20312C5.20312 3.1095 6.90641 1.40625 9 1.40625C11.0936 1.40625 12.7969 3.1095 12.7969 5.20312C12.7969 7.29675 11.0936 9 9 9Z"
-                                  fill="#fff"></path>
+                                  fill="#000"></path>
                         </svg>
                     </a>
                 </div>
@@ -53,7 +54,7 @@
 
                                 <div class="p-img light-bg">
 
-                                    <img alt="img" src="https://via.placeholder.com/75x75">
+                                    <img alt="img" src="https://via.placeholder.com/70x70">
 
                                 </div>
 
@@ -73,7 +74,7 @@
 
                                 <div class="p-img light-bg">
 
-                                    <img alt="img" src="https://via.placeholder.com/75x75">
+                                    <img alt="img" src="https://via.placeholder.com/70x70">
 
                                 </div>
 
@@ -116,14 +117,13 @@
             </div>
         </div>
     </div>
-
     <div class="nav-bar">
         <div class="container">
             <nav class="navbar">
                 <ul class="navbar-links">
                     <li class="navbar-dropdown menu-item-children">
                         <a href="javascript:void(0)"><i>
-                            <img alt="home" src="{% static 'assets/img/home.png' %}">
+                            <img alt="home" src="assets/img/home.png">
                         </i>home</a>
                         <div class="dropdown">
                             <a href="index.html">home 1</a>
@@ -165,7 +165,7 @@
                         </div>
                     </li>
                     <li class="navbar-dropdown">
-                        <a href="contact.html">Contact</a>
+                        <a href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
                 <a class="phone" href="callto:+12344502086"><i>

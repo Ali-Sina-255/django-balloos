@@ -92,16 +92,6 @@ class UserProfile(models.Model):
         return self.user.email
 
 
-class Vendor(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='user_profile')
-    vendor_name = models.CharField(max_length=100)
-    vendor_license = models.ImageField(upload_to='vendor/license')
-    is_approved = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now=True)
-
-
 @receiver(post_save, sender=User)
 def post_save_created_profile_receiver(sender, instance, created, **kwargs):
     print('Created')

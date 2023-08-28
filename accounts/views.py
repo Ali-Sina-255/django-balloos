@@ -12,21 +12,41 @@ from django.contrib.auth.tokens import default_token_generator
 # Create your views here.
 def register_user(request):
     if request.method == 'POST':
-
-        register_form = UserRegistrationForm(request.POST)
-        if register_form.is_valid():
-            register_form.save()
-            messages.success(request, 'Your registration was successful')
-            return redirect('login')
+        username = request.POST['name']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+        if password == confirm_password:
+            if User.objects.filter(email=email).exists():
+                messages.info(request, 'Email is taken')
+                return redirect('register_user')
+            elif User.objects.filter(username=username).exists():
+                messages.info(request, 'Username is taken')
+                return redirect('register_user')
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password)
+                user.save()
+                messages.success(request, 'Your registration was successful')
+                return redirect('login')
         else:
-            print('Invalid registration')
-            print(register_form.errors)
-    else:
-        register_form = UserRegistrationForm(request.POST)
-    context = {
-        'register_form': register_form
-    }
-    return render(request, 'accounts/login.html', context)
+            messages.error(request, 'password do not match.')
+            return redirect('register_user')
+    # if request.method == 'POST':
+    #
+    #     register_form = UserRegistrationForm(request.POST)
+    #     if register_form.is_valid():
+    #         register_form.save()
+    #         messages.success(request, 'Your registration was successful')
+    #         return redirect('login')
+    #     else:
+    #         print('Invalid registration')
+    #         print(register_form.errors)
+    # else:
+    #     register_form = UserRegistrationForm(request.POST)
+    # context = {
+    #     'register_form': register_form
+    # }
+    return render(request, 'accounts/login.html')
 
 
 def login(request):
@@ -104,3 +124,11 @@ def reset_password(request):
     return render(request, 'accounts/reset_password.html')
 
 
+def contact(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        comment = request.POST['comment']
+
+    return render(request, 'accounts/contact.html')
