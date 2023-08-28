@@ -5,8 +5,9 @@ from .forms import UserRegistrationForm
 from .models import User
 from .utilis import send_notification_email
 from django.utils.http import urlsafe_base64_decode
-
 from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # Create your views here.
@@ -126,9 +127,18 @@ def reset_password(request):
 
 def contact(request):
     if request.method == 'POST':
+        comment = request.POST['comment']
         name = request.POST['name']
         email = request.POST['email']
-        phone = request.POST['phone']
-        comment = request.POST['comment']
-
+        send_mail(
+            'Your reception this email form balloon project company.',
+            comment,
+            'settings.EMAIL_HOST_USER=',
+            [email],
+            fail_silently=False
+        )
+        messages.success(request, 'your email send successful.')
+        return redirect('home')
     return render(request, 'accounts/contact.html')
+
+
