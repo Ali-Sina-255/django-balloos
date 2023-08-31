@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <section class="hero-section-two gap no-bottom" style="background-image:url(https://via.placeholder.com/1920x640)">
     <div class="container">
@@ -46,15 +46,16 @@
 <section class="gap weekly-section">
     <div class="container">
         <div class="heading">
-            <img alt="heading" src="assets/img/heading.png">
+            <img alt="heading" src="{% static 'assets/img/heading.png' %}">
             <h2>Weekly Top Sellers</h2>
             <p>Love With Our Wide Selection Of Foil Balloons</p>
         </div>
         <div class="row">
+               {% for recent in recent_products %}
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 <div class="weekly-sellers">
                     <div class="weekly-sellers-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
+                        <img alt="product"  src="{{recent.images.url}}" style="width:299px;">
                         <div class="add-to-cart">
                             <a href="#" class="btn"><span>Add to Cart</span></a>
                             <a href="#" class="heart-wishlist">
@@ -78,88 +79,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="weekly-sellers">
-                    <div class="weekly-sellers-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
-                        <div class="add-to-cart">
-                            <a href="#" class="btn"><span>Add to Cart</span></a>
-                            <a href="#" class="heart-wishlist">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>Big Silver Number Balloon</h5></a>
-                        <div class="star">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h6>$18.61
-                            <del>$20.20</del>
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="weekly-sellers">
-                    <div class="weekly-sellers-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
-                        <div class="add-to-cart">
-                            <a href="#" class="btn"><span>Add to Cart</span></a>
-                            <a href="#" class="heart-wishlist">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>11 inch Qualatex Big Shamrocks</h5></a>
-                        <div class="star">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h6>$18.61
-                            <del>$20.20</del>
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="weekly-sellers">
-                    <h4>Save 16%</h4>
-                    <div class="weekly-sellers-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
-                        <div class="add-to-cart">
-                            <a href="#" class="btn"><span>Add to Cart</span></a>
-                            <a href="#" class="heart-wishlist">
-                                <i class="fa-regular fa-heart"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>35 Inch Shape Birthday Satin Star</h5></a>
-                        <div class="star">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h6>$18.61
-                            <del>$20.20</del>
-                        </h6>
-                    </div>
-                </div>
-            </div>
+           {% endfor %}
+
         </div>
     </div>
 </section>
@@ -208,19 +129,20 @@
 <section class="gap" style="background-color: #f7f7f7; background-image: url(https://via.placeholder.com/1920x1484);">
     <div class="container">
         <div class="heading">
-            <img alt="heading" src="assets/img/heading.png">
+            <img alt="heading" src="{% static 'assets/img/heading.png' %}">
             <h2>Recent Products</h2>
             <p>Love With Our Wide Selection Of Foil Balloons</p>
         </div>
         <div class="row">
+            {% for recent in recent_products %}
             <div class="col-lg-3 col-md-6">
                 <div class="recent-product-two">
                     <div class="recent-product-two-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
+                        <img alt="product" src="{{recent.images.url}}">
                     </div>
                     <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>Love Script Silver Baloon</h5></a>
+                        <span>{{recent.product_name}}</span>
+                        <a href="{% url 'product_details' recent.id %}"><h5>{{recent.product_name}}</h5></a>
                         <div class="star">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -228,137 +150,13 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <h6>$18.61</h6>
+                        <h6>${{recent.price}}</h6>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="recent-product-two">
-                    <div class="recent-product-two-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
-                        <h4>Save 16%</h4>
-                    </div>
-                    <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>Engagement Party ideas</h5></a>
-                        <div class="star">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h6>$18.61
-                            <del>$20.20</del>
-                        </h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="recent-product-two">
-                    <div class="recent-product-two-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
-                    </div>
-                    <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>Party Love Box Balloon </h5></a>
-                        <div class="star">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h6>$42.61</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="recent-product-two">
-                    <div class="recent-product-two-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
-                        <ul class="color">
-                            <li class="purple"></li>
-                            <li class="blue"></li>
-                            <li class="orange"></li>
-                        </ul>
-                    </div>
-                    <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>Mattalic Latex Balloons</h5></a>
-                        <div class="star">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h6>$42.61</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="recent-product-two">
-                    <div class="recent-product-two-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
-                    </div>
-                    <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>Star Balloon Decoration</h5></a>
-                        <div class="star">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h6>$42.61</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="recent-product-two">
-                    <div class="recent-product-two-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
-                        <ul class="color">
-                            <li class="purple"></li>
-                            <li class="blue"></li>
-                            <li class="orange"></li>
-                        </ul>
-                    </div>
-                    <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>18" Round Foil Balloon</h5></a>
-                        <div class="star">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h6>$32.61</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="recent-product-two">
-                    <div class="recent-product-two-img">
-                        <img alt="product" src="https://via.placeholder.com/204x223">
-                    </div>
-                    <div class="weekly-sellers-text">
-                        <span>LATEX BALLOONS</span>
-                        <a href="product-details.html"><h5>Gender Reveal balloon</h5></a>
-                        <div class="star">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h6>$19.61</h6>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+
+
             <div class="button">
                 <a href="product-list.html" class="btn"><span>View All Products</span></a>
             </div>
@@ -623,74 +421,38 @@
 <section class="gap no-top">
     <div class="container">
         <div class="heading">
-            <img alt="heading" src="assets/img/heading.png">
+            <img alt="heading" src="{% static 'assets/img/heading.png' %}">
             <h2>Recent News</h2>
             <p>Love With Our Wide Selection Of Foil Balloons</p>
         </div>
         <div class="row">
+            {% for recent in recent_products %}
             <div class="col-lg-4 col-md-6">
                 <div class="blog-post">
                     <div class="d-flex align-items-center">
-                        <h6>13<span>Mar, 2023</span></h6>
+                        <h6>{{recent.created|date:"M d, Y"}}</h6>
                         <div class="line"></div>
                         <span>No Comment</span>
                     </div>
-                    <a href="blog-details.html">
+                    <a href="#">
                         <h3>Lovely Balloons and Party Needs Catering</h3>
                     </a>
                     <figure>
-                        <img alt="blog-img" src="https://via.placeholder.com/410x240">
+                        <img alt="blog-img" src="{{recent.images.url}}">
                     </figure>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisc ing elit, sed do eiusmod tempor incididunt ut lab
-                        ore et dolore magna aliqua.</p>
+                    <p>{{recent.description}}</p>
                     <a href="blog-details.html">
                         <i class="fa-solid fa-plus"></i>
                         <h6>Read More</h6>
                     </a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-post">
-                    <div class="d-flex align-items-center">
-                        <h6>13<span>Mar, 2023</span></h6>
-                        <div class="line"></div>
-                        <span>No Comment</span>
-                    </div>
-                    <a href="blog-details.html">
-                        <h3>Party Event Decoration – PartyAccessories</h3>
-                    </a>
-                    <figure>
-                        <img alt="blog-img" src="https://via.placeholder.com/410x240">
-                    </figure>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisc ing elit, sed do eiusmod tempor incididunt ut lab
-                        ore et dolore magna aliqua.</p>
-                    <a href="blog-details.html">
-                        <i class="fa-solid fa-plus"></i>
-                        <h6>Read More</h6>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-post mb-0">
-                    <div class="d-flex align-items-center">
-                        <h6>13<span>Mar, 2023</span></h6>
-                        <div class="line"></div>
-                        <span>No Comment</span>
-                    </div>
-                    <a href="blog-details.html">
-                        <h3>Balloons and party supplies Toy World</h3>
-                    </a>
-                    <figure>
-                        <img alt="blog-img" src="https://via.placeholder.com/410x240">
-                    </figure>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisc ing elit, sed do eiusmod tempor incididunt ut lab
-                        ore et dolore magna aliqua.</p>
-                    <a href="blog-details.html">
-                        <i class="fa-solid fa-plus"></i>
-                        <h6>Read More</h6>
-                    </a>
-                </div>
-            </div>
+
+            {% endfor %}
+
+
+
+
         </div>
     </div>
 </section>
