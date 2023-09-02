@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ballo - Home 2</title>
+    <link rel="icon" href="assets/img/favicon.png">
+    <!-- CSS only -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+    <!-- fancybox -->
+    <link rel="stylesheet" href="{% static 'assets/css/jquery.fancybox.min.css' %}">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
+    <!-- style -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!--custom css -->
+    <link rel="stylesheet" href="{% static 'custom.css' %}">
+    <!-- responsive -->
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    <!-- color -->
+    <link rel="stylesheet" href="{% static 'assets/css/color.css' %}">
+</head>
+<body>
+<span class="loader"></span>
+<!--    header should lodated hare -->
+
+{% include 'includes/navbar.html' %}
+{% block content %}
+
+{% endblock %}
+
+{% include 'includes/footer.html' %}
+<!-- jQuery -->
+<script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+<!-- Bootstrap Js -->
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+<!-- fancybox -->
+<script src="{% static 'assets/js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'assets/js/day-time.js' %}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
+</body>

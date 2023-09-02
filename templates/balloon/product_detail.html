@@ -1,0 +1,342 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="banner pb-0" style="background-color: #f7f7f7 ;">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">Category</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Birthday Ballloons</li>
+        </ol>
+    </div>
+</div>
+<section class="gap no-top" style="background-color: #f7f7f7 ;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="pd-gallery">
+                    <ul class="pd-imgs">
+                        <li class="li-pd-imgs nav-active">
+                            <a href="JavaScript:void(0)">
+                                <img alt="ballon" src="{{recent_products.images.url}}">
+                            </a>
+
+                        </li>
+                        <li class="li-pd-imgs">
+                            <a href="JavaScript:void(0)">
+                                <img alt="ballon" src="{{recent_products.images_1.url}}">
+                            </a>
+                        </li>
+                        <li class="li-pd-imgs">
+                            <a href="JavaScript:void(0)">
+                                <img alt="ballon" src="{{recent_products.images_2.url}}">
+                            </a>
+
+                        </li>
+                    </ul>
+                    <div class="pd-main-img">
+                        <img id="NZoomImg" alt="ballon" src="{{recent_products.images_3.url}}">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product-info">
+                    <div class="d-flex align-items-center"><p>Save 16%</p><h5>SKU 25-0458</h5></div>
+                    <h2>{{recent_products.product_name}}</h2>
+
+
+                    <div class="price">
+                        <div>
+                            <div class="d-flex"><h3>${{recent_products.price}}</h3></div>
+                            <span class="dots">In stock, {{recent_products.amount}} units</span>
+                            <div class="quantity">
+                                <h6>colors:</h6>
+                                <ul class="color">
+                                    <li class="purple"></li>
+                                    <li class="blue"></li>
+                                    <li class="orange"></li>
+                                </ul>
+                            </div>
+                            <div class="quantity">
+                                <h6>Quantity:</h6>
+                                <input type="number" class="input-text" step="1" min="1" name="quantity" value="1">
+                            </div>
+                            <div class="add-to-cart">
+                                <a href="#" class="btn"><span>Add to Cart</span></a>
+                                <a href="#" class="heart-wishlist">
+                                    <i class="fa-regular fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="payment-methods">
+                    <h5>PAYMENT METHODS:</h5>
+                    <a href="#">
+                        <img alt="card" src="{% static 'assets/img/card.png' %}">
+                    </a>
+                    <p>Your payment information is processed securely. We do not store credit card details nor have
+                        access to your credit card information.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="payment-methods">
+                    <ul class="product_meta">
+                        <li><span class="theme-bg-clr">Category:</span>
+                            <ul class="pd-cat">
+                                <li><a href="#">featured products</a>,
+                                    <a href="#">balloon</a>,
+                                    <a href="#">new products</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="social-media ">
+                        <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="gap">
+    <div class="container">
+        <div class="comment mt-0">
+            <h3>Description</h3>
+            <div class="boder"></div>
+            <p>{{recent_products.description}}</p>
+            <div class="party-balloons">
+                <ul>
+                    <li><img alt="chak" src="{% static 'assets/img/chak.png' %}">Wide Selection Of Foil Balloons</li>
+                    <li><img alt="chak" src="{% static 'assets/img/chak.png' %}">Latex Balloons For Valentine's Day</li>
+                    <li><img alt="chak" src="{% static 'assets/img/chak.png' %}">Best Options In Balloons Themes</li>
+                    <li><img alt="chak" src="{% static 'assets/img/chak.png' %}">completely elegant & classy for your
+                        loved one.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="comment">
+                    <h3>Reviews</h3>
+                    <div class="boder"></div>
+
+                </div>
+                <ul class="reviews">
+                    {% for review in reviews %}
+                    <li>
+                        <h4>{{review.user.user_full_name}}</h4>
+                        <div class="rating-star">
+
+                                <span>
+                                    <i class="fa fa-star{% if review.rating == 0.5 %}-half-o{% elif review.rating < 1 %}-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating == 1.5 %}-half-o{% elif review.rating < 2 %}-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating == 2.5 %}-half-o{% elif review.rating < 3 %}-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating == 3.5 %}-half-o{% elif review.rating < 4 %}-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating == 4.5 %}-half-o{% elif review.rating < 5 %}-o {% endif %}"
+                                       aria-hidden="true"></i>
+                                </span>
+                        </div>
+                        <div>
+                            <div class="">
+
+                                <span>{{review.created_at|date:"D d M Y" }}</span>
+                                <br>
+                            </div>
+                            <p> {{review.subject}}</p>
+                        </div>
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+                <ul id="border-pagination" class="two">
+                    <li class="ps-0"><a href="javascript:void(0)"><i class="fa-solid fa-angle-left"></i></a></li>
+                    <li><a href="javascript:void(0)" class="active">01</a></li>
+                    <li><a href="javascript:void(0)">02</a></li>
+                    <li>....</li>
+                    <li><a href="javascript:void(0)">08</a></li>
+                    <li><a href="javascript:void(0)"><i class="fa-solid fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-5">
+                <form action="{% url 'submit_review' recent_products.id %}" class="add-review comment leave-comment"
+                      method="POST">
+                    {% csrf_token %}
+                    <div class="ratinga">
+                        <h3>Add Review</h3>
+                        <div class="boder"></div>
+                        <div class="rate">
+                            <input type="radio" name="rating" id="rating10" value="5" required> <label for="rating10"
+                                                                                                       title="5"></label>
+                            <input type="radio" name="rating" id="rating9" value="4.5" required> <label for="rating9"
+                                                                                                        title="4.5"
+                                                                                                        class="half"></label>
+                            <input type="radio" name="rating" id="rating8" value="4" required> <label for="rating8"
+                                                                                                      title="4"></label>
+                            <input type="radio" name="rating" id="rating7" value="3.5" required> <label for="rating7"
+                                                                                                        title="3.5"
+                                                                                                        class="half"></label>
+                            <input type="radio" name="rating" id="rating6" value="3" required> <label for="rating6"
+                                                                                                      title="3"></label>
+                            <input type="radio" name="rating" id="rating5" value="2.5" required> <label for="rating5"
+                                                                                                        title="2.5"
+                                                                                                        class="half"></label>
+                            <input type="radio" name="rating" id="rating4" value="2" required> <label for="rating4"
+                                                                                                      title="2"></label>
+                            <input type="radio" name="rating" id="rating3" value="1.5" required> <label for="rating3"
+                                                                                                        title="1.5"
+                                                                                                        class="half"></label>
+                            <input type="radio" name="rating" id="rating2" value="1" required> <label for="rating2"
+                                                                                                      title="1"></label>
+                            <input type="radio" name="rating" id="rating1" value="1.5" required> <label for="rating1"
+                                                                                                        title="0.5"></label>
+                        </div>
+                    </div>
+                    <input type="text" name="subject" placeholder="Complate Name">
+                    <input type="text" name="Email" placeholder="Email Address">
+                    <textarea name="review" placeholder="Add Review"></textarea>
+                    {% if request.user.is_authenticated %}
+                    <input class="btn" type="submit">
+                    <span>Add Review</span>
+                    </input>
+                    {% else %}
+                    <p>Your must logged in to post reviews <span><a href="{% url 'login' %}">Login</a></span></p>
+                    {% include 'includes/messages.html' %}
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="gap no-top">
+    <div class="container">
+        <div class="comment mt-0">
+            <h3>You May Also Like</h3>
+            <div class="boder"></div>
+        </div>
+        <div class="product-slider two owl-carousel owl-theme">
+            <div class="item">
+                <div class="product-style">
+                    <img alt="img" src="https://via.placeholder.com/195x210">
+                    <a href="#">
+                        <h5>Love Script Silver Baloon</h5>
+                    </a>
+                    <h6>$28.61</h6>
+                    <span>In stock, 21 units</span>
+                    <div class="add-to-cart">
+                        <a href="#" class="btn"><span>Add to Cart</span></a>
+                        <a href="#" class="heart-wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="product-style">
+                    <img alt="img" src="https://via.placeholder.com/195x210">
+                    <h4>Save 16%</h4>
+                    <a href="#">
+                        <h5>Birthday Party Balloon Decoration</h5>
+                    </a>
+                    <div class="d-flex"><h6>$16.69</h6>
+                        <del>20.20</del>
+                    </div>
+                    <span>In stock, 21 units</span>
+                    <div class="add-to-cart">
+                        <a href="#" class="btn"><span>Add to Cart</span></a>
+                        <a href="#" class="heart-wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product-style">
+                    <img alt="img" src="https://via.placeholder.com/195x210">
+                    <a href="#">
+                        <h5>Party Love Box Balloon</h5>
+                    </a>
+                    <h6>$28.61</h6>
+                    <span>In stock, 21 units</span>
+                    <div class="add-to-cart">
+                        <a href="#" class="btn"><span>Add to Cart</span></a>
+                        <a href="#" class="heart-wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product-style">
+                    <img alt="img" src="https://via.placeholder.com/195x210">
+                    <h4>Save 16%</h4>
+                    <a href="#">
+                        <h5>Red Heart Balloon Decoration</h5>
+                    </a>
+                    <div class="d-flex"><h6>$16.69</h6>
+                        <del>20.20</del>
+                    </div>
+                    <span>In stock, 21 units</span>
+                    <div class="add-to-cart">
+                        <a href="#" class="btn"><span>Add to Cart</span></a>
+                        <a href="#" class="heart-wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product-style">
+                    <img alt="img" src="https://via.placeholder.com/195x210">
+                    <a href="#">
+                        <h5>Mattalic Latex Balloons</h5>
+                    </a>
+                    <h6>$28.61</h6>
+                    <span>In stock, 21 units</span>
+                    <div class="add-to-cart">
+                        <a href="#" class="btn"><span>Add to Cart</span></a>
+                        <a href="#" class="heart-wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product-style">
+                    <img alt="img" src="https://via.placeholder.com/195x210">
+                    <a href="#">
+                        <h5>Party Love Box Balloon</h5>
+                    </a>
+                    <h6>$28.61</h6>
+                    <span>In stock, 21 units</span>
+                    <div class="add-to-cart">
+                        <a href="#" class="btn"><span>Add to Cart</span></a>
+                        <a href="#" class="heart-wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
