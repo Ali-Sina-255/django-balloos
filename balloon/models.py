@@ -1,7 +1,6 @@
 from django.db import models
 from accounts.models import User
 
-
 # Create your models here.
 
 class Category(models.Model):
@@ -47,3 +46,42 @@ class ReviewRating(models.Model):
 
     def __str__(self):
         return self.subject
+    
+    
+class Party_Accessories(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    images = models.ImageField(upload_to='images/')
+    image_1 = models.ImageField(upload_to='images/')
+    image_2 = models.ImageField(upload_to='images/')
+    price = models.IntegerField()
+    in_stock = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+    
+
+class Blog(models.Model):
+    name = models.CharField(max_length=255, blank=True)
+    slug = models.SlugField(max_length=255, blank=True)
+    images = models.ImageField(upload_to='media/blog')
+    description = models.TextField(blank=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.name        
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    comment_name = models.CharField(max_length=200)
+    comment_body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.comment_name} {self.comment_body}'
+    
+

@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'balloon.apps.BalloonConfig'
+    'balloon.apps.BalloonConfig',
+    'cart.apps.CartConfig'
 ]
 
 MIDDLEWARE = [
