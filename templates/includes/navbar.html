@@ -1,6 +1,5 @@
 {% load static %}
 <span class="loader"></span>
-
 <header class="two">
     <div class="container">
         <div class="top-bar">
@@ -123,7 +122,7 @@
                 <ul class="navbar-links">
                     <li class="navbar-dropdown menu-item-children">
                         <a href="javascript:void(0)"><i>
-                            <img alt="home" src="assets/img/home.png">
+                            <img alt="home" src="{% static 'assets/img/home.png' %}">
                         </i>home</a>
                         <div class="dropdown">
                             <a href="index.html">home 1</a>
@@ -152,16 +151,16 @@
                     <li class="navbar-dropdown menu-item-children">
                         <a href="javascript:void(0)">pages</a>
                         <div class="dropdown">
-                            <a href="about.html">about</a>
-                            <a href="login.html">login</a>
-                            <a href="404-error.html">404</a>
+                            <a href="{% url 'our_team' %}">about</a>
+                            <a href="{% url 'login' %}">login</a>
+                            <a href="{% url 'error_page' %}">404</a>
                         </div>
                     </li>
                     <li class="navbar-dropdown menu-item-children">
                         <a href="javascript:void(0)">News</a>
                         <div class="dropdown">
-                            <a href="our-blog.html">our blog</a>
-                            <a href="blog-details.html">blog details</a>
+                            <a href="{% url 'blog' %}">our blog</a>
+                            <a href="#">blog details</a>
                         </div>
                     </li>
                     <li class="navbar-dropdown">
@@ -229,8 +228,8 @@
 
                 <ul class="sub-menu">
 
-                    <li><a href="about.html">about</a></li>
-                    <li><a href="login.html">login</a></li>
+                    <li><a href="{% url 'our_team' %}">about</a></li>
+                    <li><a href="{% url 'login' %}">login</a></li>
                     <li><a href="404-error.html">404</a></li>
                 </ul>
 

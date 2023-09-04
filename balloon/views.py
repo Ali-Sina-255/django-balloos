@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Category, Recent_Product, ReviewRating, Blog, Comment
+from .models import Category, Recent_Product, ReviewRating, Blog, Comment, OurTeam
 from .forms import CommentForms, ReviewRatingForms
 from django.contrib import messages
 
@@ -79,28 +79,42 @@ def blog_details(request, pk):
 
 
 def add_comment(request,pk):
-    url = request.META.get('HTTP_REFERER')
-    blog = get_object_or_404(Blog, id=pk)
-    if request.method == "POST":
-        try:
-            comment = Comment.objects.get(user__id=request.user.id, blog__id=pk)
-            forms = CommentForms(request.POST, instance=comment)
-            forms.save()
-            messages.success(request, 'Thank you! your comment has been updated.')
+   url = request.META.get('HTTP_REFERER')
+   blog = get_object_or_404(Blog, id=pk)
+   if request.method == "POST":
+      try:
+         comment = Comment.objects.get(user__id=request.user.id, blog__id=pk)
+         forms = CommentForms(request.POST, instance=comment)
+         forms.save()
+         messages.success(request, 'Thank you! your comment has been updated.')
+         return redirect(url)
+      except Comment.DoesNotExist:
+         forms = CommentForms(request.POST)
+         if forms.is_valid():
+
+            data = Comment()
+            data.comment = forms.cleaned_data['comment_name']
+            data.comment_body = forms.cleaned_data['comment_body']
+            data.blog_id = pk
+            data.user_id = request.user.id
+            data.save()
+            messages.success(request, 'Thank Your!,your comment has been submitted.')
             return redirect(url)
-        except Comment.DoesNotExist:
-            forms = CommentForms(request.POST)
-            if forms.is_valid():
-                data = Comment()
-                data.comment = forms.cleaned_data['comment_name']
-                data.comment_body = forms.cleaned_data['comment_body']
-                data.blog_id = pk
-                data.user_id = request.user.id
-                data.save()
-                messages.success(request, 'Thank Your!,your comment has been submitted.')
-                return redirect(url)
 
-    
-    context = {'forms':forms, }
-    return render(request, 'blog/blog_details.html',context)
+   
+   context = {'forms':forms, }
+   return render(request, 'blog/blog_details.html',context)
 
+
+
+def out_teams(request): 
+   our_teams = OurTeam.objects.all()
+   context = {'our_teams':our_teams}
+   return render(request, 'blog/teams.html', context)
+
+def error_page(request):
+   return render(request, 'blog/404error.html')
+
+
+def product_list(request):
+    return render(request, 'blog/product_list.html')

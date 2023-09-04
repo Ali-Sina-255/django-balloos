@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Recent_Product, Category,ReviewRating, Blog, Comment
+from .models import Recent_Product, Category,ReviewRating, Blog, Comment, OurTeam
 
 
 # Register your models here.
@@ -20,3 +20,8 @@ class AdminBlog(admin.ModelAdmin):
 admin.site.register(Blog, AdminBlog)
 
 admin.site.register(Comment)
+class TeamAdmin(admin.ModelAdmin):
+    list_display = ('name', 'position', 'team_image', 'phone_number')
+    list_display_links = ('team_image', 'name', 'position')
+
+admin.site.register(OurTeam, TeamAdmin)
