@@ -35,3 +35,4 @@ class TeamAdmin(admin.ModelAdmin):
 
 
 admin.site.register(OurTeam, TeamAdmin)
+

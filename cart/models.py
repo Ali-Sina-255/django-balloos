@@ -1,17 +1,23 @@
 from django.db import models
-from balloon . models import Recent_Product
+from balloon.models import Recent_Product
+
 
 # Create your models here.
-class Card_item(models.Model):
-    name = models.CharField(max_length=100)
-    category = models.ForeignKey(Recent_Product, on_delete=models.CASCADE)
+class Card(models.Model):
+    card_id = models.CharField(max_length=255, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.card_id
+
 
 class CartItem(models.Model):
-    name = models.CharField(max_length=100)
-    category = models.ForeignKey(Recent_Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    product = models.ForeignKey(Recent_Product, on_delete=models.CASCADE)
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)
+
+    quantity = models.IntegerField()
+    is_active = models.BooleanField(default=True)
     date = models.DateTimeField(auto_now_add=True)
-    
-    
+
+    def __str__(self):
+        return self.product
