@@ -13,11 +13,13 @@ class Card(models.Model):
 
 class CartItem(models.Model):
     product = models.ForeignKey(Recent_Product, on_delete=models.CASCADE)
-    card = models.ForeignKey(Card, on_delete=models.CASCADE)
-
+    cart = models.ForeignKey(Card, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
     date = models.DateTimeField(auto_now_add=True)
+
+    def sub_total(self):
+        return self.product.price * self.quantity
 
     def __str__(self):
         return self.product

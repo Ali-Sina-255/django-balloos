@@ -67,7 +67,7 @@
                                 <input type="number" class="input-text" step="1" min="1" name="quantity" value="1">
                             </div>
                             <div class="add-to-cart">
-                                <a href="#" class="btn"><span>Add to Cart</span></a>
+                                <a href="{% url 'add_cart' recent_products.id %}" class="btn"><span>Add to Cart</span></a>
                                 <a href="#" class="heart-wishlist">
                                     <i class="fa-regular fa-heart"></i>
                                 </a>
