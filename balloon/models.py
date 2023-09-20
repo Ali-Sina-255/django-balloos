@@ -105,3 +105,22 @@ class OurTeam(models.Model):
         return format_html("<img width=100;height=75; style='border-radius:5px' src='{}'>".format(self.images.url))
 
     team_image.short_description = 'Images'
+
+
+class Weekly_Hots(models.Model):
+    product_name = models.CharField(max_length=255, blank=True)
+    ready_time = models.CharField(max_length=100)
+    ready_time_1 = models.CharField(max_length=100)
+    price = models.IntegerField()
+    images = models.ImageField(upload_to='images/weekly/')
+    images_1 = models.ImageField(upload_to='images/weekly/')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'weekly hots'
+        verbose_name_plural = 'weekly hots'
+
+    def __str__(self):
+        return self.product_name
+

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Recent_Product, Category, ReviewRating, Blog, Comment, OurTeam
+from .models import Recent_Product, Category, ReviewRating, Blog, Comment, \
+    OurTeam, Weekly_Hots
 
 
 # Register your models here.
@@ -36,3 +37,10 @@ class TeamAdmin(admin.ModelAdmin):
 
 admin.site.register(OurTeam, TeamAdmin)
 
+
+class Weekly_Admin(admin.ModelAdmin):
+    list_display = ('product_name', 'price', 'created_at')
+    list_display_links = ('product_name', 'price')
+
+
+admin.site.register(Weekly_Hots, Weekly_Admin)
